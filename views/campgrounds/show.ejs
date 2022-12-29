@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-6 offset-3">
         <div class="card mb-3">
-            <img src="<%= campground.image %>" class="card-img-top" alt="...">
+            <img style="object-fit: cover; max-height: 400px;" src="<%= campground.image %>" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title"><%= campground.title %></h5>
               <p class="card-text"><%= campground.description %></p>
@@ -11,11 +11,22 @@
                 <li class="list-group-item">$<%= campground.price %> / Night</li>
               </ul>
               <div class="d-flex gap-2">
-                  <a class="card-link btn btn-warning"href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+                  <a class="card-link btn btn-warning" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
                   <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST"><button class="card-link btn btn-danger">Delete</button></form>
                   <a class="btn btn-primary" href="/campgrounds">All Campgrounds</a>
               </div>
             </div>
-          </div>
+            <div class="card-footer text-muted">Last modified 
+              <% if (Math.round((Date.now() - Date.parse(campground.updatedAt))/(1000 * 60 * 60 * 24)) === 0) {%> 
+              today.
+              <%} %> 
+              <% if (Math.round((Date.now() - Date.parse(campground.updatedAt))/(1000 * 60 * 60 * 24)) === 1) {%> 
+              yesterday.
+              <%} %> 
+              <% if (Math.round((Date.now() - Date.parse(campground.updatedAt))/(1000 * 60 * 60 * 24)) > 1) {%> 
+              <%=Math.round((Date.now() - Date.parse(campground.updatedAt))/(1000 * 60 * 60 * 24))%> days ago.
+              <%} %> 
+              </div>
+        </div>
     </div>
 </div>

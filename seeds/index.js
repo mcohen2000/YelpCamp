@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const cities = require("./cities");
+const imageCollections = require("./imageCollections");
 const { places, descriptors } = require("./seedHelpers");
 const Campground = require("../models/campground");
 
@@ -23,8 +24,9 @@ const seedDb = async () => {
     const newCampground = new Campground({
       title: `${randomArrayItem(descriptors)} ${randomArrayItem(places)}`,
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
-      image: "https://source.unsplash.com/collection/483251",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      image: `https://source.unsplash.com/collection/${randomArrayItem(imageCollections)}`,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       price: randomPrice,
     });
     await newCampground.save();
