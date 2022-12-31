@@ -2,8 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-const Campground = require("./models/campground");
-const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/expressError");
 
 mongoose.connect("mongodb://localhost:27017/yelp-camp", {
@@ -26,9 +24,13 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(express.static(path.join(__dirname, "public")));
 
 const campgroundsRouter = require("./routes/campgrounds");
 app.use("/campgrounds", campgroundsRouter);
+
+const reviewsRouter = require("./routes/reviews");
+app.use("/campgrounds/:id/reviews", reviewsRouter);
 
 app.get("/", (req, res) => {
   res.render("home");
@@ -45,9 +47,7 @@ app.use((err, req, res, next) => {
   }
   res.status(statusCode).render("error", { err });
 });
-// app.use((req, res) => {
-//   res.status(404).send("<h1>Error: 404</h1><h2>We can't seem to find the page you're looking for.</h2>")
-// })
+
 app.listen(3000, () => {
   console.log("Listening on port 3000");
 });
