@@ -1,0 +1,23 @@
+.delImageWrapper{
+    position: relative;
+    max-width: 100%;
+    text-align: center;
+
+}
+.editImage{
+    max-width: 12rem;
+}
+.delImageCheck{
+    background-color: white;
+    border-radius: 3px;
+    padding: 0rem 0rem;
+    max-width: 5rem;
+    position: absolute;
+    top: 2px;
+    text-align: center;
+    left: 2px;
+    right: 2.5rem
+}
+/* .form-check-input.delCheckbox{
+    accent-color: red;
+} */
