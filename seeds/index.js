@@ -25,7 +25,16 @@ const seedDb = async () => {
       author: "63b06c7ac5fe550f69fc8afe",
       title: `${randomArrayItem(descriptors)} ${randomArrayItem(places)}`,
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
-      image: `https://source.unsplash.com/collection/${randomArrayItem(imageCollections)}`,
+      images: [
+        {
+          url: `https://source.unsplash.com/collection/${randomArrayItem(imageCollections)}`,
+          filename: `${randomArrayItem(imageCollections)}`,
+        },
+        {
+          url: `https://source.unsplash.com/collection/483251`,
+          filename: `${randomArrayItem(imageCollections)}`,
+        },
+      ],
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       price: randomPrice,
