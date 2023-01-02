@@ -12,7 +12,7 @@ router
   .get(catchAsync(campgrounds.index))
   .post(
     isLoggedIn,
-    upload.array("campground[image]"),
+    upload.array("campground[images]"),
     validateCampground,
     catchAsync(campgrounds.createCampground)
   );
