@@ -17,6 +17,7 @@ const campgroundSchema = new mongoose.Schema(
     price: Number,
     description: String,
     location: String,
+    coordinates: [Number],
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

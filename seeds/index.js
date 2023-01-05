@@ -25,6 +25,7 @@ const seedDb = async () => {
       author: "63b06c7ac5fe550f69fc8afe",
       title: `${randomArrayItem(descriptors)} ${randomArrayItem(places)}`,
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
+      coordinates: [cities[random1000].latitude, cities[random1000].longitude],
       images: [
         {
           url: `https://source.unsplash.com/collection/${randomArrayItem(imageCollections)}`,

@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="/css/stars.css">
 
 <div class="row">
+  <div id="map" class="col-6 mb-3" style="width: 100%; height: 30vh;"></div>
     <div class="col-6">
       <div class="card mb-3">
           <div id="campgroundCarousel" class="carousel slide card-img-top">
@@ -102,3 +103,7 @@
         </div>
       </div>
 </div>
+<script>
+const camp = <%- JSON.stringify(campground) %>;
+</script>
+<script src="/javascript/showPageMap.js"></script>
