@@ -1,7 +1,10 @@
 <% layout("/layouts/boilerplate") %> 
+
+
 <div>
     <h1 class="mb-3">All Campgrounds</h1>
     <a class="btn btn-outline-primary mb-3" href="/campgrounds/new">New</a>
+    <div id="map" class="mb-3" style="width: 100%; height: 60vh;"></div>
     <div class="d-flex flex-column-reverse">
 
     <% for (let campground of campgrounds) {%> 
@@ -25,3 +28,8 @@
 
     </div>
 </div>
+
+<script>
+    const allCampgrounds = <%- JSON.stringify(campgrounds) %>;
+</script>
+<script src="/javascript/indexPageMap.js"></script>
