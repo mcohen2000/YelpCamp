@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const ExpressError = require("./utils/expressError");
 const mongoSanitize = require("express-mongo-sanitize");
@@ -44,17 +45,13 @@ const scriptSrcUrls = [
   "https://unpkg.com/leaflet@1.9.3/dist/leaflet.js",
   "https://stackpath.bootstrapcdn.com/",
   "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js",
-  
 ];
 const styleSrcUrls = [
   "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css",
   "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css",
-
 ];
 const connectSrcUrls = [];
-const fontSrcUrls = [
-  "https://fonts.gstatic.com/"
-];
+const fontSrcUrls = ["https://fonts.gstatic.com/"];
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
@@ -82,6 +79,10 @@ app.use(
 const secret = process.env.SECRET || "testsecret";
 
 const sessionConfig = {
+  store: MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 3600,
+  }),
   name: "yc-session",
   secret: secret,
   resave: false,
