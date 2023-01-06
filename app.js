@@ -82,6 +82,9 @@ const sessionConfig = {
   store: MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 3600,
+    crypto: {
+      secret: secret,
+    },
   }),
   name: "yc-session",
   secret: secret,
