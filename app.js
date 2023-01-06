@@ -12,10 +12,11 @@ const ExpressError = require("./utils/expressError");
 const mongoSanitize = require("express-mongo-sanitize");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const helmet = require("helmet");
 const User = require("./models/user");
-// const dbUrl = process.env.DB_URL
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/yelp-camp";
 
-mongoose.connect("mongodb://localhost:27017/yelp-camp", {
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -37,13 +38,57 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(mongoSanitize());
+app.use(helmet({ crossOriginEmbedderPolicy: false }));
+
+const scriptSrcUrls = [
+  "https://unpkg.com/leaflet@1.9.3/dist/leaflet.js",
+  "https://stackpath.bootstrapcdn.com/",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js",
+  
+];
+const styleSrcUrls = [
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css",
+  "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css",
+
+];
+const connectSrcUrls = [];
+const fontSrcUrls = [
+  "https://fonts.gstatic.com/"
+];
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: [],
+      connectSrc: ["'self'", ...connectSrcUrls],
+      scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+      styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+      workerSrc: ["'self'", "blob:"],
+      objectSrc: [],
+      imgSrc: [
+        "'self'",
+        "blob:",
+        "data:",
+        "https://res.cloudinary.com/dxjip6lpc/",
+        "https://images.unsplash.com/",
+        "https://source.unsplash.com/",
+        "https://unpkg.com/leaflet@1.9.3/",
+        "https://tile.openstreetmap.org/",
+      ],
+      fontSrc: ["'self'", ...fontSrcUrls],
+    },
+  })
+);
+
+const secret = process.env.SECRET || "testsecret";
 
 const sessionConfig = {
-  secret: "testsecret",
+  name: "yc-session",
+  secret: secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
     httpOnly: true,
+    secure: true,
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
