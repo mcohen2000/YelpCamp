@@ -49,6 +49,7 @@ const scriptSrcUrls = [
 const styleSrcUrls = [
   "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css",
   "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css",
+  "https://fonts.googleapis.com/",
 ];
 const connectSrcUrls = [];
 const fontSrcUrls = ["https://fonts.gstatic.com/"];
@@ -65,7 +66,7 @@ app.use(
         "'self'",
         "blob:",
         "data:",
-        "https://res.cloudinary.com/dxjip6lpc/",
+        `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/`,
         "https://images.unsplash.com/",
         "https://source.unsplash.com/",
         "https://unpkg.com/leaflet@1.9.3/",
@@ -92,7 +93,7 @@ const sessionConfig = {
   saveUninitialized: true,
   cookie: {
     httpOnly: true,
-    secure: true,
+    // secure: true,
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
