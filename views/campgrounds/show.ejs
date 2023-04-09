@@ -58,7 +58,7 @@
       </div>
       <div class="col-6">
         <% if (currentUser) {%> 
-        <h4 class="mb-4">Leave a Review:</h4>
+        <h4 class="mb-4 text-white">Leave a Review:</h4>
       <form action="/campgrounds/<%=campground._id%>/reviews" method="post" class="mb-3 validated-form" novalidate>
         <div class="mb-1">
           <fieldset class="starability-basic">
@@ -76,7 +76,7 @@
           </fieldset>
         </div>
         <div class="mb-3">
-          <label class="form-label" for="body">Review Text</label>
+          <label class="form-label text-white" for="body">Review Text</label>
           <textarea name="review[body]" id="body" cols="30" rows="3" class="form-control" required></textarea>
           <div class="valid-feedback">
             Looks good!
