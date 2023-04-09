@@ -1,38 +1,38 @@
 <% layout("/layouts/boilerplate") %> 
 <div class="row">
-    <h1 class="text-center">New Campground</h1>
+    <h1 class="text-center text-white">New Campground</h1>
     <div class="col-6 offset-3">
         <form action="/campgrounds" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
             <div class="mb-3">
-                <label class="form-label" for="title">Title: </label>
+                <label class="form-label text-white" for="title">Title: </label>
                 <input class="form-control" type="text" id="title" name="campground[title]" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="location">Location (City, State): </label>
+                <label class="form-label text-white" for="location">Location (City, State): </label>
                 <input class="form-control" type="text" id="locaiton" name="campground[location]" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="image">Images: </label>
+                <label class="form-label text-white" for="image">Images: </label>
                 <input class="form-control" type="file" id="image" name="campground[images]" multiple required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="description">Description: </label>
+                <label class="form-label text-white" for="description">Description: </label>
                 <textarea class="form-control" type="text" id="description" name="campground[description]" required></textarea>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="price">Price: </label>
+                <label class="form-label text-white" for="price">Price: </label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
                     <input class="form-control" type="text" id="price" placeholder="0.00" name="campground[price]" required>

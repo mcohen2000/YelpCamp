@@ -1,8 +1,10 @@
-<% layout("/layouts/boilerplate") %> 
-<h1>Register</h1>
-<form action="/register" method="post" class="validated-form" novalidate>
-    <div class="mb-3">
-        <label for="username" class="form-label">Username:</label>
+<% layout("/layouts/boilerplate") %>
+<div class="d-flex flex-column justify-content-center align-items-center text-white">
+
+    <h1>Register</h1>
+    <form action="/register" method="post" class="validated-form d-flex flex-column justify-content-center align-items-center my-3" novalidate>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username:</label>
         <input type="text" class="form-control" id="username" name="username" required>
     </div>
     <div class="mb-3">
@@ -13,5 +15,6 @@
         <label for="password" class="form-label">Password:</label>
         <input type="password" class="form-control" id="password" name="password" required>
     </div>
-    <button class="btn btn-primary">Register</button>
+    <button class="btn btn-primary btn-block">Register</button>
 </form>
+</div> 
